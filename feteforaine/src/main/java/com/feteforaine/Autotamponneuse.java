@@ -6,6 +6,31 @@ public class Autotamponneuse {
 	private boolean power, blink;
 	private final long id;
 	private static long idCount = 1;
+	private final static int DISTANCE_MINIMALE = 10;
+
+	public double calculeDistance(Autotamponneuse autreAuto){
+		int x = this.posX - autreAuto.posX;
+		int y = this.posY - autreAuto.posY;
+
+		double result = Math.sqrt((x*x) + (y*y));
+		return result;
+	}
+
+	static double calculeDistance(Autotamponneuse auto1, Autotamponneuse auto2){
+		int x = auto1.posX - auto2.posX;
+		int y = auto1.posY - auto2.posY;
+
+		double result = Math.sqrt((x*x) + (y*y));
+		return result;
+	}
+
+	public boolean collision (Autotamponneuse autreAuto){
+		return calculeDistance(autreAuto) < DISTANCE_MINIMALE;
+	}
+
+	static boolean collision (Autotamponneuse auto1, Autotamponneuse auto2){
+		return calculeDistance(auto1, auto2) < DISTANCE_MINIMALE;
+	}
 
 	public Autotamponneuse(int pPosX, int PposY){
 		posX = pPosX;

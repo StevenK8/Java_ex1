@@ -8,9 +8,12 @@ public class TestAutotamponneuse {
 		a2.ajouteOccupant("Flash McQueen");
 		System.out.println(a2);
 		Autotamponneuse a3 = new Autotamponneuse(5, 18);
+		Autotamponneuse a4 = new Autotamponneuse(10, 15);
 		a3.ajouteOccupant("Alain Terrieur");
 		a3.demarreClignotement();
 		a3.allume();
 		System.out.println(a3);
+
+		System.out.println(a3.collision(a4));
 	}
 }
