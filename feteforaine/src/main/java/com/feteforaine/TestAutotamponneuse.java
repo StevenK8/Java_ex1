@@ -5,12 +5,12 @@ public class TestAutotamponneuse {
 		Autotamponneuse a1 = new Autotamponneuse(110, 10);
 		System.out.println(a1);
 		Autotamponneuse a2 = new Autotamponneuse(83, 15);
-		a2.setDriver("Flash McQueen");
+		a2.ajouteOccupant("Flash McQueen");
 		System.out.println(a2);
 		Autotamponneuse a3 = new Autotamponneuse(5, 18);
-		a3.setDriver("Alain Terrieur");
-		a3.setPower(true);
-		a3.setBlink(true);
+		a3.ajouteOccupant("Alain Terrieur");
+		a3.demarreClignotement();
+		a3.allume();
 		System.out.println(a3);
 	}
 }

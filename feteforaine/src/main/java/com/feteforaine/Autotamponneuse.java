@@ -48,16 +48,58 @@ public class Autotamponneuse {
 	public String toString() {
 		return "["+ id +"] " + "(" + posX+","+posY+") " + (estOccupee()?"occupée ("+conducteur+")"  : "libre") + " " + (estAllumee()?"allumée":"éteinte") + " " +(estClignotante()?"clignotante":"non clignotante");
 	}
-	
-	public void setDriver(String driver){
-		conducteur = driver;
+
+	public int ajouteOccupant (String nom){
+		if(estOccupee())
+			return 1;
+		else{
+			conducteur = nom;
+			return 0;
+		}
 	}
-	
-	public void setPower(boolean pow){
-		power = pow;
+
+	public int enleveOccupant (){
+		if(estOccupee()){
+			conducteur = "";
+			return 0;
+		}
+		else
+			return 0;
 	}
-	
-	public void setBlink(boolean blinking){
-		blink = blinking;
+
+	public int allume(){
+		if(estAllumee())
+			return 1;
+		else{
+			power = true;
+			return 0;
+		}
+	}
+
+	public int eteint(){
+		if(!estAllumee())
+			return 1;
+		else{
+			power = false;
+			return 0;
+		}
+	}
+
+	public int demarreClignotement(){
+		if(estClignotante())
+			return 1;
+		else{
+			blink = true;
+			return 0;
+		}
+	}
+
+	public int arreteClignotement(){
+		if(!estClignotante())
+			return 1;
+		else{
+			blink = false;
+			return 0;
+		}
 	}
 }
