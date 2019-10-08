@@ -1,24 +1,35 @@
 package com.feteforaine;
 
 public class Autotamponneuse {
-	private int posX, posY;
+	private double posX, posY;
 	private String conducteur;
 	private boolean power, blink;
 	private final long id;
 	private static long idCount = 1;
-	private final static int DISTANCE_MINIMALE = 10;
+	private final static double DISTANCE_MINIMALE = 10;
 
 	public double calculeDistance(Autotamponneuse autreAuto){
-		int x = this.posX - autreAuto.posX;
-		int y = this.posY - autreAuto.posY;
+		double x = this.posX - autreAuto.posX;
+		double y = this.posY - autreAuto.posY;
 
 		double result = Math.sqrt((x*x) + (y*y));
 		return result;
 	}
 
+	public boolean equals(Object autreObjet) {
+		if(autreObjet instanceof Autotamponneuse){
+			Autotamponneuse autreAuto = (Autotamponneuse)autreObjet;
+			if (this.estClignotante() == autreAuto.estClignotante())
+				return true;
+			else
+				return false;
+		}
+		return false;
+	}
+
 	static double calculeDistance(Autotamponneuse auto1, Autotamponneuse auto2){
-		int x = auto1.posX - auto2.posX;
-		int y = auto1.posY - auto2.posY;
+		double x = auto1.posX - auto2.posX;
+		double y = auto1.posY - auto2.posY;
 
 		double result = Math.sqrt((x*x) + (y*y));
 		return result;
@@ -32,7 +43,7 @@ public class Autotamponneuse {
 		return calculeDistance(auto1, auto2) < DISTANCE_MINIMALE;
 	}
 
-	public Autotamponneuse(int pPosX, int PposY){
+	public Autotamponneuse(double pPosX, double PposY){
 		posX = pPosX;
 		posY = PposY;
 		conducteur = "";

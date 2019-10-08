@@ -2,7 +2,7 @@ package com.feteforaine;
 
 public class TestAutotamponneuse {
 	public static void main(String[] args){
-		Autotamponneuse a1 = new Autotamponneuse(110, 10);
+		Autotamponneuse a1 = new Autotamponneuse(90, 10);
 		System.out.println(a1);
 		Autotamponneuse a2 = new Autotamponneuse(83, 15);
 		a2.ajouteOccupant("Flash McQueen");
@@ -14,6 +14,7 @@ public class TestAutotamponneuse {
 		a3.allume();
 		System.out.println(a3);
 
-		System.out.println(a3.collision(a4));
+		System.out.println(a2.equals(a4));
+		System.out.println(Autotamponneuse.collision(a3, a4));
 	}
 }
