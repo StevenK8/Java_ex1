@@ -1,12 +1,16 @@
 package com.feteforaine;
 
+import java.util.Random;
+
 public class Autotamponneuse {
 	private double posX, posY;
 	private String conducteur;
-	private boolean power, blink;
+	private boolean power, blink, destroyed;
 	private final long id;
 	private static long idCount = 1;
 	private final static double DISTANCE_MINIMALE = 10;
+	private final static double MIN_SIZE = 0;
+	private final static double MAX_SIZE = 100;
 
 	public double calculeDistance(Autotamponneuse autreAuto){
 		double x = this.posX - autreAuto.posX;
@@ -80,9 +84,54 @@ public class Autotamponneuse {
 	public long getId() {
 		return id;
 	}
+
+	public void removeId(){
+		idCount--;
+	}
+
+	public void moveRandom(){
+		double rand = Math.random();
+		int direction = (int)(rand*4);
+		if(direction == 0){
+			if(posX > MIN_SIZE)
+				posX--;
+			else
+				posX++;
+		}
+		if(direction == 1){
+			if(posY < MAX_SIZE)
+				posY++;
+			else
+				posY--;
+		}
+		if(direction == 2){
+			if(posX < MAX_SIZE)
+				posX++;
+			else
+				posX--;
+		}
+		if(direction == 3){
+			if(posY > MIN_SIZE)
+				posY--;
+			else
+				posY++;
+		}
+	}
+
+	public void destroy(){
+		destroyed = true;
+	}
+
+	public boolean isDestroyed(){
+		return destroyed;
+	}
 	
 	public String toString() {
 		return "["+ id +"] " + "(" + posX+","+posY+") " + (estOccupee()?"occupée ("+conducteur+")"  : "libre") + " " + (estAllumee()?"allumée":"éteinte") + " " +(estClignotante()?"clignotante":"non clignotante");
+	}
+
+	public String toStringSimple(){
+		return "["+this.getId()+"] " + this.getNomOccupant();
 	}
 
 	public int ajouteOccupant (String nom){
